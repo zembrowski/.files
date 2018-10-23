@@ -8,7 +8,6 @@ set backspace=indent,eol,start	" Make backspace behave like every other editor.
 let mapleader = ','		" Map leader to comma (Laracasts inspired: "The default leader is backslash '\', but a comma ',' is much better.")
 set nonumber			" Let's deactivate line numbers
 
-set fu
 
 
 "----------Visuals---------"
@@ -78,6 +77,16 @@ nmap <D-e> :NERDTreeToggle<cr>
 " greplace
 set grepprg=ag			" We want to use ag for the search
 let g:grep_cmd_opts = '--line-numbers --noheading'
+
+
+
+"----------Laravel-Specific---------"
+nmap <Leader>lr :e routes/web.php<cr>
+nmap <Leader>lm :!php artisan make:
+nmap <Leader>lec :e app/Http/Controllers/<cr>
+nmap <Leader>lem :e app/<cr>
+nmap <Leader>lev :e resources/views/<cr>
+"nmap <Leader>lfc :CtrlP<cr>app/Http/Controllers/
 
 
 
