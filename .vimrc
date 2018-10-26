@@ -7,6 +7,7 @@ syntax enable
 set backspace=indent,eol,start	" Make backspace behave like every other editor.
 let mapleader = ','		" Map leader to comma (Laracasts inspired: "The default leader is backslash '\', but a comma ',' is much better.")
 set nonumber			" Let's deactivate line numbers
+set noerrorbells visualbell t_vb= 	" No damn bells.
 
 
 
@@ -55,16 +56,26 @@ nmap <C-L> <C-W><C-L>
 " Make it easy to edit the .vimrc file. 
 nmap <Leader>ev :tabedit ~/.vimrc<cr> 
 
+" Make it easy to edit a snippet file.
+nmap <Leader>es :e ~/.vim/snippets/<cr> 
+
+" Make it easy to edit the plugins file.
+nmap <Leader>ep :e ~/.vim/plugins.vim<cr> 
+
 " Add simple highlight removal
 nmap <Leader><Space> :nohlsearch<cr>
 
 " Ctags specific
 nmap <Leader>f :tag<space>
 
+"Sort PHP use statements
+"http://stackoverflow.com/questions/11531073/how-do-you-sort-a-range-of-lines-by-length
+vmap <Leader>ul ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr>
+
 "----------Plugins---------"
 
 " CtrlP
-let g:ctrlp_custom_ignore = 'node_modules\DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules|\DS_Store\|git\|vendor'
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:10'
 nmap <D-p> :CtrlP<cr>
 nmap <D-r> :CtrlPBufTag<cr>
@@ -77,6 +88,25 @@ nmap <D-e> :NERDTreeToggle<cr>
 " greplace
 set grepprg=ag			" We want to use ag for the search
 let g:grep_cmd_opts = '--line-numbers --noheading'
+
+" vim-php-namespace
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+autocmd FileType php inoremap <Leader>n <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>n :call PhpInsertUse()<CR>
+
+function! IPhpExpandClass()
+    call PhpExpandClass()
+    call feedkeys('a', 'n')
+endfunction
+autocmd FileType php inoremap <Leader>nf <Esc>:call IPhpExpandClass()<CR>
+autocmd FileType php noremap <Leader>nf :call PhpExpandClass()<CR>
+
+autocmd FileType php inoremap <Leader>ua <Esc>:call PhpSortUse()<CR>
+autocmd FileType php noremap <Leader>ua :call PhpSortUse()<CR>
+let g:php_namespace_sort_after_insert = 1
 
 
 
