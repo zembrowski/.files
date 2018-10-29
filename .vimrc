@@ -8,6 +8,8 @@ set backspace=indent,eol,start	" Make backspace behave like every other editor.
 let mapleader = ','		" Map leader to comma (Laracasts inspired: "The default leader is backslash '\', but a comma ',' is much better.")
 set nonumber			" Let's deactivate line numbers
 set noerrorbells visualbell t_vb= 	" No damn bells.
+set autowriteall                " Automatically write the file when switching
+set complete=.,w,b,u 		" Set our desired autocompletion matching.
 
 
 
