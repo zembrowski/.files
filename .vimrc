@@ -10,7 +10,10 @@ set nonumber			" Let's deactivate line numbers
 set noerrorbells visualbell t_vb= 	" No damn bells.
 set autowriteall                " Automatically write the file when switching
 set complete=.,w,b,u 		" Set our desired autocompletion matching.
-
+set tabstop=8
+set expandtab
+set softtabstop=4
+set shiftwidth=4
 
 
 "----------Visuals---------"
@@ -74,6 +77,11 @@ nmap <Leader>f :tag<space>
 "http://stackoverflow.com/questions/11531073/how-do-you-sort-a-range-of-lines-by-length
 vmap <Leader>ul ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr>
 
+" PHP-CS-Fixer
+nnoremap <silent><leader>pf :call PhpCsFixerFixFile()<CR>
+
+
+
 "----------Plugins---------"
 
 " CtrlP
@@ -109,6 +117,10 @@ autocmd FileType php noremap <Leader>nf :call PhpExpandClass()<CR>
 autocmd FileType php inoremap <Leader>ua <Esc>:call PhpSortUse()<CR>
 autocmd FileType php noremap <Leader>ua :call PhpSortUse()<CR>
 let g:php_namespace_sort_after_insert = 1
+
+" vim-php-cs-fixer
+let g:php_cs_fixer_rules = "@PSR2"
+let g:php_cs_fixer_path = "/Users/zembrowski/.composer/vendor/bin/php-cs-fixer" 
 
 
 
