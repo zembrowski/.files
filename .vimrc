@@ -1,4 +1,7 @@
+
 set nocompatible              	" We want the latest Vim settings and options (be iMproved, required)
+
+
 
 so ~/.vim/plugins.vim
 
@@ -14,6 +17,9 @@ set tabstop=8
 set expandtab
 set softtabstop=4
 set shiftwidth=4
+
+let @a="yiw/}O$this->pa = $pa;?constructOprotected $pa;/construct/\", "
+
 
 
 "----------Visuals---------"
