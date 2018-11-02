@@ -1,8 +1,6 @@
 
 set nocompatible              	" We want the latest Vim settings and options (be iMproved, required)
 
-
-
 so ~/.vim/plugins.vim
 
 syntax enable
@@ -46,15 +44,17 @@ hi VertSplit ctermfg=black ctermbg=black
 
 "----------Searching---------"
 
-set hlsearch
-set incsearch
+set hlsearch                    " Highlight all matched terms.
+set incsearch                   " Incrementally highlight, as we type.
 
 
 
 "----------Splits---------"
 
-set splitbelow
-set splitright
+set splitbelow                  " Make splits default to below...
+set splitright                  " And to the right. This feels more natural.
+
+" We'll set simpler mappings to switch between splits.
 nmap <C-H> <C-W><C-H>
 nmap <C-J> <C-W><C-J>
 nmap <C-K> <C-W><C-K>
@@ -76,7 +76,8 @@ nmap <Leader>ep :e ~/.vim/plugins.vim<cr>
 " Add simple highlight removal
 nmap <Leader><Space> :nohlsearch<cr>
 
-" Ctags specific
+" Quickly browse to any tag/symbol in the project.
+" Tip: run ctags -R to regenerate the index.
 nmap <Leader>f :tag<space>
 
 "Sort PHP use statements
@@ -126,7 +127,17 @@ let g:php_namespace_sort_after_insert = 1
 
 " vim-php-cs-fixer
 let g:php_cs_fixer_rules = "@PSR2"
-let g:php_cs_fixer_path = "/Users/zembrowski/.composer/vendor/bin/php-cs-fixer" 
+let g:php_cs_fixer_path = $HOME . "/.composer/vendor/bin/php-cs-fixer" 
+
+" pdv (PHP Documentor for VIM)
+let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+nnoremap <leader>d :call pdv#DocumentWithSnip()<CR>
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsSnippetsDir = $HOME . "/.vim/ultisnips"
 
 
 
