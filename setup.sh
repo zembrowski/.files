@@ -1,9 +1,15 @@
 #!/bin/bash
 
 # Make symbolic links
-ln -s ~/.files/.aliases ~/.aliases
-ln -s ~/.files/.vimrc ~/.vimrc
-ln -s ~/.files/.gvimrc ~/.gvimrc
+ln -sf ~/.files/.aliases ~/.aliases
+ln -sf ~/.files/.vimrc ~/.vimrc
+ln -sf ~/.files/plugins.vim ~/.vim/plugins.vim
+ln -sf ~/.files/.gvimrc ~/.gvimrc
 
 # Optional
+## MacVim
 #sudo ln -s ~/Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/mvim
+
+## Vungle
+#git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+#vim +PluginInstall +qall
