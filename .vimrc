@@ -87,6 +87,10 @@ vmap <Leader>ul ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr
 " PHP-CS-Fixer
 nnoremap <silent><leader>pf :call PhpCsFixerFixFile()<CR>
 
+" Comment/Uncomment line
+map <Leader>cl 0i//<Esc>
+map <Leader>ul 02x
+
 
 
 "----------Plugins---------"
@@ -94,6 +98,7 @@ nnoremap <silent><leader>pf :call PhpCsFixerFixFile()<CR>
 " CtrlP
 let g:ctrlp_custom_ignore = 'node_modules|\DS_Store\|git\|vendor'
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:10'
+let g:ctrlp_clear_cache_on_exit = 0
 nmap <D-p> :CtrlP<cr>
 nmap <D-r> :CtrlPBufTag<cr>
 nmap <D-d> :CtrlPMRUFiles<cr>
