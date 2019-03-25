@@ -13,3 +13,7 @@ ln -sf ~/.files/.gvimrc ~/.gvimrc
 ## Vungle
 #git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 #vim +PluginInstall +qall
+
+## Atom Dark color scheme
+#mkdir -p ~/.vim/colors/
+#wget -O ~/.vim/colors/atom-dark.vim https://raw.githubusercontent.com/gosukiwi/vim-atom-dark/master/colors/atom-dark.vim
