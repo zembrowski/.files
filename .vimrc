@@ -22,7 +22,13 @@ let @a="yiw/}O$this->pa = $pa;?constructOprotected $pa;/construct/\",
 
 "----------Visuals---------"
 
-colorscheme atom-dark
+if (has('termguicolors'))
+    set termguicolors
+endif
+
+let g:material_terminal_italics = 1
+
+colorscheme material
 set t_CO=256			" Use 256 colors. This is useful for Terminal Vim.
 
 set guioptions-=e 		" We don't want GUI tabs

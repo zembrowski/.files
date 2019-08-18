@@ -18,8 +18,8 @@ set linespace=15		" Line height.
 hi LineNr guibg=bg		" Line number background should be the same as the default.
 hi foldcolumn guibg=bg		" Left padding background should be the same as the default.
 hi vertsplit guifg=bg guibg=bg  " Get rid of ugly split borders.
-
-
+hi Cursor guifg=white guibg=#2979FF
+hi NonText guifg=bg
 
 "----------Key-Bindings---------"
 
