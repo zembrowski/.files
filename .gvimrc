@@ -8,8 +8,8 @@ set fu				" Start in fullscreen.
 "----------Editor---------"
 
 set macligatures		" Ligatures.
-set guifont=Fira\ Code:h16	" Font.
-set linespace=15		" Line height.
+set guifont=Fira\ Code:h20	" Font.
+set linespace=25		" Line height.
 
 
 
