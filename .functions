@@ -1,0 +1,24 @@
+#!/bin/bash
+# Add everything and commit with message (stops if staged files detected)
+function commit() {
+  MESSAGE="$1"
+  if [ -z "$MESSAGE" ]; then
+    echo "Please provide a commit message ´commit 'Adds awesomeness'´"
+    return 1
+  fi
+
+  STAGED=$(git diff --cached --numstat | wc -l)
+  if [ $((STAGED)) != 0 ]; then
+    echo "You already have staged files. Please check them first."
+    return 2
+  fi;
+
+  add
+  gc "${MESSAGE}"
+}
+
+# Create a new directory and enter it
+function mkd() {
+  (mkdir -p "$@" || (echo 'Could not create directory' && return 1)) && \
+  (cd "$@" || (echo 'Could not change created directory' && return 2))
+}
