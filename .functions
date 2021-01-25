@@ -3,7 +3,7 @@
 function commit() {
   MESSAGE="$1"
   if [ -z "$MESSAGE" ]; then
-    echo "Please provide a commit message ´commit 'Adds awesomeness'´"
+    echo "Please provide a commit message ´commit 'Add something awesome!'´"
     return 1
   fi
 
@@ -20,5 +20,39 @@ function commit() {
 # Create a new directory and enter it
 function mkd() {
   (mkdir -p "$@" || (echo 'Could not create directory' && return 1)) && \
-  (cd "$@" || (echo 'Could not change created directory' && return 2))
+  (cd "$@" || (echo 'Could not change into created directory' && return 2))
+}
+
+# Change directory based on name provided
+function w() {
+  NAME="$1"
+  if [ -z "$NAME" ]; then
+    echo "Please provide a name ´w deric´"
+    return 1
+  fi
+
+  PATH_CLIENTS="$HOME/code/clients/$NAME"
+
+  if [ ${#NAME} -eq 2 ] && [ -d "$PATH_CLIENTS" ]; then
+    cd "$PATH_CLIENTS"
+    return 0
+  fi
+
+  PATH_RL="$HOME/code/rl/$NAME"
+
+  if [ -d "$PATH_RL" ]; then
+
+    COUNT=$(ls | wc -l)
+    if [ "$COUNT" -eq "1" ]; then
+      SUBDIR=$(ls)
+      cd "$PATH_RL"/"$SUBDIR"
+      return 0
+    fi
+
+    cd "$PATH_RL"
+    return 0
+  fi
+
+  echo "Sorry, could not find the directory you're looking for."
+  return 2
 }
