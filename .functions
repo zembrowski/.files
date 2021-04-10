@@ -23,6 +23,16 @@ function mkd() {
   (cd "$@" || (echo 'Could not change into created directory' && return 2))
 }
 
+# Open provided file (or current working directory if not)
+function o() {
+  if [ -z $1 ]; then
+    open .
+    return 0
+  fi
+
+  open $1
+}
+
 # Change directory based on name provided
 function w() {
   NAME="$1"
