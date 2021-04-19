@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Returns solely an exit code
+# Check whether a branch exists (return solely an exit code)
 function branch_exists() {
   git rev-parse --verify "$1" &> /dev/null
 }
 
-# Add everything and commit with message (stops if staged files detected)
+# Add everything and commit with message (stop if staged files detected)
 function commit() {
   MESSAGE="$1"
   if [ -z "$MESSAGE" ]; then
@@ -23,6 +23,7 @@ function commit() {
   gc "${MESSAGE}"
 }
 
+# Checkout root branch (try common names)
 function main() {
   COMMON_ROOT_BRANCHES_NAMES=( main master )
 
@@ -43,21 +44,21 @@ function mkd() {
   (cd "$@" || (echo 'Could not change into created directory' && return 2))
 }
 
-# Open provided file (or current working directory if not)
+# Open provide file (or current working directory if no input provided)
 function o() {
-  if [ -z $1 ]; then
-    open .
+  if [ -n "$1" ]; then
+    open "$1"
     return 0
   fi
 
-  open $1
+  open .
 }
 
 # Change directory based on name provided
 function w() {
   NAME="$1"
   if [ -z "$NAME" ]; then
-    echo "Please provide a name ´w deric´"
+    echo "Please provide a name ´w name´"
     return 1
   fi
 
@@ -83,6 +84,6 @@ function w() {
     return 0
   fi
 
-  echo "Sorry, could not find the directory you're looking for."
+  echo "Could not find the directory you're looking for"
   return 2
 }
