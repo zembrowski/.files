@@ -1,4 +1,10 @@
 #!/bin/bash
+
+# Returns solely an exit code
+function branch_exists() {
+  git rev-parse --verify "$1" &> /dev/null
+}
+
 # Add everything and commit with message (stops if staged files detected)
 function commit() {
   MESSAGE="$1"
@@ -15,6 +21,20 @@ function commit() {
 
   add
   gc "${MESSAGE}"
+}
+
+function main() {
+  COMMON_ROOT_BRANCHES_NAMES=( main master )
+
+  for branch_name in $COMMON_ROOT_BRANCHES_NAMES; do
+    if branch_exists "$branch_name"; then
+      git checkout "$branch_name"
+      return 0
+    fi
+  done
+
+  echo "No known root branch exists in this repo"
+  return 1
 }
 
 # Create a new directory and enter it
