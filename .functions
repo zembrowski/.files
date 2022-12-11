@@ -87,3 +87,10 @@ function w() {
   echo "Could not find the directory you're looking for"
   return 2
 }
+
+function gd_download_xml() {
+    ID="$1"
+    DIRECTORY=`basename "$PWD"`
+
+    curl https://stage-dev.grundsteuer.pro/"$DIRECTORY"/"$ID".xml --output "$ID".1.xml
+}
