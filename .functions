@@ -92,5 +92,5 @@ function gd_download_xml() {
     ID="$1"
     DIRECTORY=`basename "$PWD"`
 
-    curl https://stage-dev.grundsteuer.pro/"$DIRECTORY"/"$ID".xml --output "$ID".1.xml
+    curl https://stage-dev.grundsteuer.pro/"$DIRECTORY"/"$ID".xml --output "$ID".download.xml
 }
