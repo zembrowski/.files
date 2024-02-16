@@ -57,6 +57,7 @@ function o() {
 # Change directory based on name provided
 function w() {
   NAME="$1"
+  SUBDIR="$2"
   if [ -z "$NAME" ]; then
     echo "Please provide a name ´w name´"
     return 1
@@ -64,8 +65,12 @@ function w() {
 
   PATH_CLIENTS="$HOME/code/clients/$NAME"
 
-  if [ ${#NAME} -eq 2 ] && [ -d "$PATH_CLIENTS" ]; then
+  if [ ${#NAME} -eq 2 ] && [ -d "$PATH_CLIENTS" ] && [ -z "$SUBDIR" ]; then
     cd "$PATH_CLIENTS"
+    return 0
+  elif [ ! -z "$SUBDIR" ] && [ -d "$PATH_CLIENTS"/"$SUBDIR" ]; then
+    cd "$PATH_CLIENTS"/"$SUBDIR"
+    echo "Switched to: $PATH_CLIENTS/$SUBDIR"
     return 0
   fi
 
@@ -88,9 +93,18 @@ function w() {
   return 2
 }
 
+function wd() {
+    w "$1" deric
+}
+
 function gd_download_xml() {
     ID="$1"
     DIRECTORY=`basename "$PWD"`
 
     curl https://stage-dev.grundsteuer.pro/"$DIRECTORY"/"$ID".xml --output "$ID".download.xml
+}
+
+function get-line() {
+    LINE_NUMBER="$1"
+    awk "NR==$LINE_NUMBER" ~/Desktop/DO/FI/reference/reference.csv
 }
