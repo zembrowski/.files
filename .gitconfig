@@ -1,0 +1,11 @@
+[user]
+    name = Krzysztof Tomasz Zembrowski
+    email = zembrowski@users.noreply.github.com
+[core]
+    autocrlf = input
+[push]
+    autoSetupRemote = true
+[credential]
+    helper = cache
+[alias]
+    nah = "!f(){ git reset --hard; git clean -df; if [ -d ".git/rebase-apply" ] || [ -d ".git/rebase-merge" ]; then git rebase --abort; fi; }; f"
