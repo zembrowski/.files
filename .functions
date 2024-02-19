@@ -106,5 +106,5 @@ function gd_download_xml() {
 
 function get-line() {
     LINE_NUMBER="$1"
-    awk "NR==$LINE_NUMBER" ~/Desktop/DO/FI/reference/reference.csv
+    awk "NR==$LINE_NUMBER" "$2"
 }
