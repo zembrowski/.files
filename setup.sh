@@ -2,9 +2,10 @@
 
 # Make symbolic links
 ln -sf ~/.files/.aliases ~/.aliases
+ln -sf ~/.files/.gitconfig ~/.gitconfig
+ln -sf ~/.files/.gvimrc ~/.gvimrc
 ln -sf ~/.files/.vimrc ~/.vimrc
 ln -sf ~/.files/plugins.vim ~/.vim/plugins.vim
-ln -sf ~/.files/.gvimrc ~/.gvimrc
 
 # Optional
 ## MacVim
