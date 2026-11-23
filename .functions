@@ -157,3 +157,13 @@ function create-script() {
   chmod +x "$filename"
   echo "Created and made executable: $filename"
 }
+
+# Print the repo digest of a deric image: deric-digest <code> [tag=main]
+function deric-digest() {
+  if [ -z "$1" ]; then
+    echo "Usage: deric-digest <code> [tag, default: main]"
+    return 1
+  fi
+
+  docker image inspect --format '{{index .RepoDigests 0}}' "registry.rechtlogisch.de/$1/deric:${2:-main}"
+}
