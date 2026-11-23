@@ -108,3 +108,52 @@ function get-line() {
     LINE_NUMBER="$1"
     awk "NR==$LINE_NUMBER" "$2"
 }
+
+function sx-share() {
+    SOURCE="$1"
+    scp "$1" sx-rabe-azure-test:rabe/shared/
+}
+
+function quality() {
+    if [ -f composer.json ]; then
+        composer quality
+        return
+    fi
+
+    if [ -f package.json ]; then
+        npm run quality
+        return
+    fi
+
+    echo "Neither composer.json nor package.json found. Cannot run quality."
+}
+
+function create-script() {
+  if [ -z "$1" ]; then
+    echo "Usage: create-script <script-name-without-or-with-.sh>"
+    return 1
+  fi
+
+  # Ensure the filename ends with .sh
+  case "$1" in
+    *.sh) filename="$1" ;;
+    *)    filename="$1.sh" ;;
+  esac
+
+  # Prevent overwriting unless explicitly allowed
+  if [ -e "$filename" ]; then
+    echo "Error: '$filename' already exists."
+    return 1
+  fi
+
+  # Create the file with shebang and basic template
+  {
+    echo "#!/bin/bash"
+    echo
+    echo "set -euo pipefail"
+    echo
+  } > "$filename"
+
+  chmod +x "$filename"
+  echo "Created and made executable: $filename"
+}
